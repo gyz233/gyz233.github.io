@@ -3,109 +3,527 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>我的个人主页</title>
+  <title>郭一泽 | Yize Guo</title>
+  <meta
+    name="description"
+    content="郭一泽的中文个人主页，中国科学技术大学人工智能硕士研究生，研究方向包括具身智能、VLA、模仿学习、机器人运动规划与强化学习。"
+  />
   <style>
+    :root {
+      --link: #1772d0;
+      --link-hover: #f09228;
+      --text: #222222;
+      --muted: #666666;
+      --line: rgba(0, 0, 0, 0.16);
+      --bg: #ffffff;
+      --panel: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f7f7f8;
-      color: #222;
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 48px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
-
-    h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      margin-top: 40px;
-      font-size: 24px;
-    }
-
-    p {
-      font-size: 18px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
     }
 
     a {
-      color: #0969da;
+      color: var(--link);
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
+    a:hover,
+    a:focus {
+      color: var(--link-hover);
+      text-decoration: none;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
+    .page {
+      width: min(920px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
     }
 
-    .tag {
-      background: #eef2ff;
-      color: #3730a3;
-      padding: 8px 12px;
+    .top-nav {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .top-nav a {
+      margin: 0 10px;
+      white-space: nowrap;
+    }
+
+    .page-title {
+      margin: 0 0 10px;
+      text-align: center;
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .intro-table,
+    .section-table,
+    .entry-table {
+      width: 100%;
+      border: 0;
+      border-collapse: separate;
+    }
+
+    .intro-table {
+      border-spacing: 0 0;
+    }
+
+    .intro-table td {
+      padding: 20px;
+      vertical-align: top;
+    }
+
+    .photo-cell {
+      width: 30%;
+    }
+
+    .summary-cell {
+      width: 70%;
+      text-align: justify;
+    }
+
+    .portrait {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .profile-links {
+      margin-top: 12px;
+      text-align: center;
+      line-height: 1.9;
+    }
+
+    .profile-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 14px;
+      text-align: left;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      margin: 22px 0 10px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0));
+    }
+
+    .section-table {
+      border-spacing: 0;
+      margin-top: 4px;
+    }
+
+    .section-table td {
+      padding: 10px 6px 8px;
+    }
+
+    .section-heading {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    ul.news-list,
+    ul.simple-list {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    ul.news-list li,
+    ul.simple-list li {
+      margin: 0 0 8px;
+    }
+
+    .entry-table {
+      border-spacing: 0 12px;
+    }
+
+    .entry-table td {
+      padding: 0 12px;
+      vertical-align: top;
+    }
+
+    .entry-meta {
+      width: 24%;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: normal;
+    }
+
+    .entry-content {
+      width: 76%;
+    }
+
+    .entry-title {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .entry-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .project-figure {
+      margin: 12px 0 0;
+    }
+
+    .project-figure img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .project-figure video {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #000000;
+    }
+
+    .tag-row {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tag-row span {
+      display: inline-block;
+      margin: 4px 8px 0 0;
+      padding: 2px 8px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 999px;
-      font-size: 14px;
+      background: var(--panel);
     }
 
-    footer {
-      margin-top: 40px;
-      color: #666;
-      font-size: 14px;
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 0 6px;
+    }
+
+    .two-col h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 18px, 920px);
+      }
+
+      .intro-table,
+      .intro-table tbody,
+      .intro-table tr,
+      .intro-table td,
+      .entry-table,
+      .entry-table tbody,
+      .entry-table tr,
+      .entry-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .intro-table td,
+      .entry-table td {
+        padding: 10px 8px;
+      }
+
+      .photo-cell {
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      .summary-cell {
+        text-align: left;
+      }
+
+      .entry-meta {
+        padding-bottom: 4px;
+      }
+
+      .project-figure img,
+      .project-figure video {
+        max-width: 320px;
+        margin: 0;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .page-title {
+        font-size: 31px;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <section class="card">
-      <h1>你好，我是你的名字</h1>
-      <p>
-        这里是我的个人主页。我关注计算机、人工智能、产品设计和有趣的项目。
-      </p>
+  <div class="page">
+    <div class="top-nav">
+      <a href="#about">简介</a>
+      <a href="#news">近况</a>
+      <a href="#research">科研与项目</a>
+      <a href="#intern">实习经历</a>
+      <a href="#skills">技术能力</a>
+      <a href="#education">教育与荣誉</a>
+    </div>
 
-      <h2>关于我</h2>
-      <p>
-        你可以在这里介绍自己的学校、专业、研究方向、技能、经历或兴趣。
-      </p>
+    <p class="page-title">郭一泽 | Yize Guo</p>
 
-      <h2>项目</h2>
-      <p>
-        这里可以放你的 GitHub 项目、论文、作品集、博客文章或简历链接。
-      </p>
+    <table class="intro-table" id="about">
+      <tr>
+        <td class="photo-cell">
+          <img class="portrait" src="personal.png" alt="郭一泽个人照片" />
+          <div class="profile-links">
+            | <a href="郭一泽简历0430 (1).pdf" target="_blank" rel="noreferrer">简历</a> |
+            <a href="mailto:guoyz221@mail.ustc.edu.cn">邮箱</a> |
+            <a href="https://github.com/gyz233" target="_blank" rel="noreferrer">GitHub</a> |
+            <br />
+            | <a href="https://gyz233.github.io/" target="_blank" rel="noreferrer">个人主页</a> |
+          </div>
+          <!-- <div class="profile-note">
+            中科大10系2026届硕士研究生。当前主要关注VLA、模仿学习、机器人运动规划与强化学习。
+          </div> -->
+        </td>
+        <td class="summary-cell">
+          <p>
+            我是中国科学技术大学信息科学技术学院 2026 届人工智能硕士研究生，师从<a href="https://baike.baidu.com/item/%E7%A7%A6%E5%AE%B6%E8%99%8E/23541484" target="_blank" rel="noreferrer">秦家虎教授</a>。
+            我的研究主要围绕具身智能、Vision-Language-Action 模型、模仿学习、机器人运动规划与强化学习展开。
+          </p>
+          <p>
+            我比较关心的问题不仅仅是单一模型指标，而是如何把训练策略、模型架构和真实机器人系统部署串成一个完整闭环。
+            因此，除了算法设计，我也持续参与双臂平台搭建、底层控制、遥操作数据优化增广、训练管线构建以及实机推理部署。
+          </p>
+          <p>
+            目前的工作重点包括：多任务 VLA 训练与后训练、基于 flow matching 的模仿学习、多任务策略切换与深度信息对齐、
+            Franka 机械臂的可控接触运动规划，以及四足机器人强化学习与 sim2real 部署。
+          </p>
+          <p>
+            <strong>研究兴趣：</strong>具身智能、VLA / 模仿学习、机器人规划与控制、强化学习与真实系统部署。<br />
+            <strong>联系邮箱：</strong>guoyz221@mail.ustc.edu.cn
+          </p>
+        </td>
+      </tr>
+    </table>
 
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">AI</span>
-        <span class="tag">Web</span>
-        <span class="tag">GitHub Pages</span>
+    <hr />
+
+    <table class="section-table" id="news">
+      <tr><td><span class="section-heading">近况</span></td></tr>
+    </table>
+    <ul class="news-list">
+      <li>[2026.05] 完成 CT-VAM 研究，作为我们分层 VLA 大框架中的“小脑”部分，负责承接高层任务意图与低层视觉运动控制；已投 CoRL2026，近期将开源并挂在 arXiv上。</li>
+      <li>[2026.05] 在 AGIBOT WORLD CHALLENGE 2026 @ ICRA 智元具身智能挑战赛中取得前十名（10/79），围绕多任务 VLA 训练、Multi-LoRA、深度信息对齐和数据飞轮完成系统优化。🎆🎆</li>
+      <li>[2026.05] 论文 <a href="https://doi.org/10.1109/LRA.2026.3683317" target="_blank" rel="noreferrer">DG-ACMP: Deformation-Guided Motion Planning With Acceptable Contacts for Manipulators in Cluttered Environments</a> 发表于 IEEE Robotics and Automation Letters。</li>
+      <li>[2025.09 - 至今] 持续开展基于 flow matching 的模仿学习多模态约束研究，关注顺序约束任务中的模态可控性。</li>
+    </ul>
+
+    <hr />
+
+    <table class="section-table" id="research">
+      <tr><td><span class="section-heading">科研与项目</span></td></tr>
+    </table>
+    <table class="entry-table">
+      <tr>
+        <td class="entry-meta">
+          <div>2026.03 - 2026.05</div>
+          <figure class="project-figure">
+            <img src="agibot world challange.png" alt="AGIBOT WORLD CHALLENGE 2026 比赛展示图" />
+          </figure>
+        </td>
+        <td class="entry-content">
+          <p class="entry-title">AGIBOT WORLD CHALLENGE 2026 @ ICRA 智元具身智能挑战赛</p>
+          <p class="entry-subtitle">VLA 多任务训练 / 深度信息对齐 / Multi-LoRA / RL 后训练 / 数据飞轮</p>
+          <p>面向十类涵盖长程与精细操作的真实机器人任务，基于 ACOT-VLA 搭建多任务训练与后训练框架。</p>
+          <ul class="simple-list">
+            <li>针对数据量不均衡问题，设计带权重的训练采样策略，使模型得分从 6.2 提升至 7.04。</li>
+            <li>针对负迁移和策略干扰，设计单任务 LoRA 微调与 Multi-LoRA 动态切换策略，将切换延迟从 100ms+ 压缩到 1ms 内，得分提升至 7.42。</li>
+            <li>引入 VGGT 做深度信息对齐并重构训练流程，使训练速度提升 2x+；结合 flow matching 初始噪声优化与 rule-based 纠偏，最终将综合得分提升至 8.09。</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="entry-meta">
+          <div>2026.01 - 2026.05</div>
+          <figure class="project-figure">
+            <img src="CT-VAM.png" alt="CT-VAM 项目展示图" />
+          </figure>
+        </td>
+        <td class="entry-content">
+          <p class="entry-title">CT-VAM：面向高效视觉运动控制的轻量机器人策略模型（CoRL 2026 在投）</p>
+          <p>提出受小脑 - 丘脑机制启发的视觉 - 动作模型，将高层任务意图和低层高频视觉反馈控制解耦，用于轻量化闭环机器人操作。</p>
+          <ul class="simple-list">
+            <li>设计 TARS 流分离条件注意力模块，分别建模动作、视觉、本体状态和任务条件信息，缓解密集视觉 token 对任务条件的干扰。</li>
+            <li>提出 Flow-Consistent Inpainting 异步动作块生成机制，在执行当前动作块时预测下一动作块，并通过重叠约束保证动作连续性。</li>
+            <li>在 LIBERO 仿真基准中以 68M 参数达到 82.1% 平均成功率，并在 OpenArm 与 Jetson Orin NX 上完成真实平台验证。</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="entry-meta">
+          <div>2024.08 - 2025.08</div>
+          <figure class="project-figure">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="DG-ACMP.mp4" type="video/mp4" />
+              您的浏览器暂不支持视频播放。
+            </video>
+          </figure>
+        </td>
+        <td class="entry-content">
+          <p class="entry-title">DG-ACMP：障碍物密集环境下面向可控接触的机械臂运动规划（IEEE RA-L 2026）</p>
+          <p>研究拥挤 / 可变形环境中的机械臂运动规划，允许“安全、可控”的接触以提升可达性和任务成功率。</p>
+          <ul class="simple-list">
+            <li>提出 ACMP 框架，将接触视为可控代价而非绝对禁止，提高狭窄空间中的可行性。</li>
+            <li>使用变形场和粘弹接触模型获得连续可导的接触代价与梯度，并构建结合高斯过程先验的因子图 MAP 轨迹优化方法。</li>
+            <li>在仿真与 Franka 实机上完成验证，相比传统优化方法在成功率、求解时间与接触代价等指标上综合表现更优。</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="entry-meta">2025.09 - 至今</td>
+        <td class="entry-content">
+          <p class="entry-title">基于 flow matching 的模仿学习多模态约束研究</p>
+          <p>研究主流 flow matching 模型在顺序约束任务中的模态不可控与计算效率问题。</p>
+          <ul class="simple-list">
+            <li>采用 streaming flow matching 替代传统扩散范式，将扩散过程放在状态维度，支持“边生成边执行”，降低推理延迟。</li>
+            <li>设计模态引导网络，提升多模态轨迹生成的可控性，并解决 streaming 生成中的轨迹拼接稳定性问题。</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="entry-meta">2024.02 - 2024.07</td>
+        <td class="entry-content">
+          <p class="entry-title">四足机器人欠驱动载荷自适应行走与载荷稳定控制</p>
+          <p class="entry-subtitle">强化学习 / sim2real / Unitree Go2</p>
+          <p>围绕欠驱动载荷场景下的稳定运动控制，设计双估计器与非对称 Actor-Critic 结构，并完成零样本实机部署。</p>
+          <ul class="simple-list">
+            <li>训练中使用 Isaac Gym、4096 并行环境和域随机化，对地面摩擦、执行器延迟和载荷参数进行扰动建模。</li>
+            <li>在 Unitree Go2 上实现坡道、台阶、跷跷板等场景的 zero-shot 部署。</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+    <hr />
+
+    <table class="section-table" id="intern">
+      <tr><td><span class="section-heading">实习经历</span></td></tr>
+    </table>
+    <table class="entry-table">
+      <tr>
+        <td class="entry-meta">2022.10 - 2023.04</td>
+        <td class="entry-content">
+          <p class="entry-title">科大讯飞数码研究院 · 研究算法实习生</p>
+          <p>主要参与端到端语音识别降噪适配优化与流式语音识别热词增强框架搭建。</p>
+          <ul class="simple-list">
+            <li>针对 EAA-Net 降噪后端到端语音模型错误率不降反增的问题，构建原始数据与降噪数据的混合训练集，并采用 layer-wise learning rate 衰减策略进行微调，使噪声测试集 WER 从 31.03% 降至 30.01%。</li>
+            <li>搭建热词增强框架，引入 efficient conformer、业务数据训练与浅融合方案，将整体 WER 从 9.508% 降至 8.228%，关键词 BWER 从 34.224% 降至 20.822%。</li>
+            <li>设计热词过滤网络替换原有过滤策略，使单次处理速度提升 6.2 倍。</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+    <hr />
+
+    <table class="section-table" id="skills">
+      <tr><td><span class="section-heading">技术能力</span></td></tr>
+    </table>
+    <div class="two-col">
+      <div>
+        <h3>模型与学习</h3>
+        <ul class="simple-list">
+          <li>VLA / 模仿学习训练策略、模型架构改进与实机部署经验。</li>
+          <li>具备 spatial-forcing、DSRL、Multi-LoRA、RL 后训练等实操经验。</li>
+          <li>掌握 DQN、PPO 等强化学习方法，具备四足机器人策略训练和迁移部署经历。</li>
+        </ul>
       </div>
+      <div>
+        <h3>机器人系统与规控</h3>
+        <ul class="simple-list">
+          <li>具身机器人系统全栈落地经验，包括双臂硬件搭建、底层控制、遥操作数采、训练与实机推理。</li>
+          <li>熟悉 IK、重力补偿、机器人运动学与动力学，具备 Franka 机械臂实机部署经验。</li>
+          <li>掌握 LQR、iLQR / DDP、MPC、GPMP，以及 A*、RRT、Dijkstra 等规划算法。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tag-row">
+      <span>VLA</span>
+      <span>Imitation Learning</span>
+      <span>Flow Matching</span>
+      <span>Franka</span>
+      <span>Unitree Go2</span>
+      <span>MPC</span>
+      <span>GPMP</span>
+      <span>Isaac Gym</span>
+    </div>
 
-      <h2>联系我</h2>
-      <p>
-        Email: your-email@example.com<br />
-        GitHub: <a href="https://github.com/你的GitHub用户名">你的GitHub用户名</a>
-      </p>
+    <hr />
 
-      <footer>
-        © 2026 你的名字
-      </footer>
-    </section>
-  </main>
+    <table class="section-table" id="education">
+      <tr><td><span class="section-heading">教育与荣誉</span></td></tr>
+    </table>
+    <div class="two-col">
+      <div>
+        <h3>教育背景</h3>
+        <ul class="simple-list">
+          <li><strong>中国科学技术大学</strong>，信息科学技术学院，人工智能硕士研究生，2023.08 - 2026.06（2026 届），导师：<a href="https://baike.baidu.com/item/%E7%A7%A6%E5%AE%B6%E8%99%8E/23541484" target="_blank" rel="noreferrer">秦家虎教授</a>。</li>
+          <li><strong>河海大学</strong>，人工智能与自动化学院，自动化本科，2019.08 - 2023.06，保研，绩点排名前 10%，导师：<a href="https://jszy.hhu.edu.cn/wb101/" target="_blank" rel="noreferrer">王冰教授</a>。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>竞赛与成果</h3>
+        <ul class="simple-list">
+          <li>AGIBOT WORLD CHALLENGE 2026 @ ICRA 具身智能挑战赛前十名（10/79）。</li>
+          <li>美国大学生数学建模竞赛特等奖提名（前 2%）。</li>
+          <li>中科大一等学业奖学金、江苏省优秀毕业设计、安徽省重大专项机械臂规控方向主要参与人。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-note">
+        2026 郭一泽 | Yize Guo. 版权所有. <br />
+        最后更新：2026.06.01
+    </div>
+  </div>
 </body>
 </html>
