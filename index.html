@@ -190,6 +190,13 @@
       margin-bottom: 8px;
     }
 
+    .entry-citation {
+      color: var(--muted);
+      font-size: 14px;
+      margin: -2px 0 8px;
+      line-height: 1.6;
+    }
+
     .project-figure {
       margin: 12px 0 0;
     }
@@ -351,7 +358,7 @@
       <tr><td><span class="section-heading">近况</span></td></tr>
     </table>
     <ul class="news-list">
-      <li>[2026.06] 完成 CT-VAM 研究，作为我们分层 VLA 大框架中的“小脑”部分，负责承接高层任务意图与低层视觉运动控制；已投 CoRL2026，近期将开源并挂在 arXiv上。</li>
+      <li>[2026.06] 完成 CT-VAM 研究，作为我们分层 VLA 大框架中的“小脑”部分，负责承接高层任务意图与低层视觉运动控制；已投 CoRL2026，并已发布于 arXiv：<a href="https://arxiv.org/abs/2606.09572" target="_blank" rel="noreferrer">arXiv:2606.09572</a>。</li>
       <li>[2026.05] 在 AGIBOT WORLD CHALLENGE 2026 @ ICRA 智元具身智能挑战赛中取得前十名（10/79）🎉🎉，围绕多任务 VLA 训练、Multi-LoRA、深度信息对齐和数据飞轮完成系统优化。</li>
       <li>[2026.04] 论文 <a href="https://doi.org/10.1109/LRA.2026.3683317" target="_blank" rel="noreferrer">DG-ACMP: Deformation-Guided Motion Planning With Acceptable Contacts for Manipulators in Cluttered Environments</a> 发表于 IEEE Robotics and Automation Letters。</li>
       <li>[2025.09 - 至今] 持续开展基于 flow matching 的模仿学习多模态约束研究，关注顺序约束任务中的模态可控性。</li>
@@ -390,6 +397,7 @@
         </td>
         <td class="entry-content">
           <p class="entry-title">CT-VAM：面向高效视觉运动控制的轻量机器人策略模型（CoRL 2026 在投）</p>
+          <p class="entry-citation">Jiacheng Li<sup>*</sup>, <strong>Yize Guo<sup>*</sup></strong>, Jiabin Guo<sup>*</sup>, Qingchen Liu, Jiahu Qin. <a href="https://arxiv.org/abs/2606.09572" target="_blank" rel="noreferrer">CT-VAM: A Cerebello-Thalamic-Inspired Vision-Action Model for Efficient Visuomotor Control</a>. arXiv:2606.09572, 2026.</p>
           <p>提出受小脑 - 丘脑机制启发的视觉 - 动作模型，将高层任务意图和低层高频视觉反馈控制解耦，用于轻量化闭环机器人操作。</p>
           <ul class="simple-list">
             <li>设计 TARS 流分离条件注意力模块，分别建模动作、视觉、本体状态和任务条件信息，缓解密集视觉 token 对任务条件的干扰。</li>
@@ -410,6 +418,7 @@
         </td>
         <td class="entry-content">
           <p class="entry-title">DG-ACMP：障碍物密集环境下面向可控接触的机械臂运动规划（IEEE RA-L 2026）</p>
+          <p class="entry-citation"><strong>Yize Guo</strong>, Jiacheng Li, Qingchen Liu, Weiming Fu, Jiahu Qin, Yu Kang. <a href="https://doi.org/10.1109/LRA.2026.3683317" target="_blank" rel="noreferrer">DG-ACMP: Deformation-Guided Motion Planning With Acceptable Contacts for Manipulators in Cluttered Environments</a>. IEEE Robotics and Automation Letters, 11(6):7046-7053, 2026.</p>
           <p>研究拥挤 / 可变形环境中的机械臂运动规划，允许“安全、可控”的接触以提升可达性和任务成功率。</p>
           <ul class="simple-list">
             <li>提出 ACMP 框架，将接触视为可控代价而非绝对禁止，提高狭窄空间中的可行性。</li>
